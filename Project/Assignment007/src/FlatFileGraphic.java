@@ -6,6 +6,7 @@ import java.io.*;
 
 public class FlatFileGraphic {
 
+    //initiate veriables
     public JFrame frame;
     JPanel panelLeft = new JPanel();
     JPanel panelRight = new JPanel();
@@ -31,6 +32,7 @@ public class FlatFileGraphic {
     String[] res;
 
     public void initiateWindow() {
+
         //Creating the Frame
         frame = new JFrame("Weighted Grade");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,10 +41,12 @@ public class FlatFileGraphic {
         panelLeft.setSize(300, 600);
         panelRight.setSize(300, 600);
 
+        // read part
         JLabel label1 = new JLabel("Reading File Name:");
         JTextField tf1 = new JTextField(30);  // accepts up to 30 characters
         JButton button1 = new JButton("Click to read from file");
         JLabel label3 = new JLabel("First five lines of file:");
+        // button action
         button1.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -58,20 +62,23 @@ public class FlatFileGraphic {
                     int i = 0;
                     while((line = br.readLine()) != null && i < 5){
                         res[i] = "";
+                        String toAppend = "";
                         String[] temp = line.split(csvSplit);
                         for (int j = 0; j < temp.length && j < 3; j++) {
                             if (j==0) {
                                 res[i] += temp[j];
+                                toAppend += temp[j];
                             } else {
                                 res[i] += "," + temp[j];
+                                toAppend += "," + temp[j];
                             }
                         }
 
-                        ta1.append(res[i]+"\r\n");
+                        ta1.append(line+"\r\n");
                         ta2.append(res[i]+"\r\n");
                         i++;
                     }
-                    ta1.setLineWrap(true);
+                    // ta1.setLineWrap(true);
                     ta1.setWrapStyleWord(true);
                     frame.setVisible(true);
 
@@ -81,9 +88,7 @@ public class FlatFileGraphic {
             }
         });
 
-
-
-
+        // write part
         JLabel label2 = new JLabel("File Name to write:");
         JTextField tf2 = new JTextField(30);  // accepts up to 30 characters
         JButton button2 = new JButton("Click to write to file");
@@ -114,7 +119,7 @@ public class FlatFileGraphic {
             }
         });
 
-
+        // add items to frame
         panelLeftTop1.add(label1);
         panelLeftTop1.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 15));
         panelLeftTop2.add(tf1);
