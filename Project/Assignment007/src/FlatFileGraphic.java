@@ -43,7 +43,7 @@ public class FlatFileGraphic {
 
         // read part
         JLabel label1 = new JLabel("Reading File Name:");
-        JTextField tf1 = new JTextField(30);  // accepts up to 30 characters
+        JTextField tf1 = new JTextField("annual.csv", 30);  // accepts up to 30 characters
         JButton button1 = new JButton("Click to read from file");
         JLabel label3 = new JLabel("First five lines of file:");
         // button action
